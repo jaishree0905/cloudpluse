@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CloudPulse Dashboard</title>
+
+    <style>
+        body{
+            font-family: Arial, sans-serif;
+            background:#f4f4f4;
+            text-align:center;
+            margin:0;
+            padding:40px;
+        }
+
+        h1{
+            color:#0077cc;
+        }
+
+        .container{
+            width:350px;
+            margin:auto;
+            background:white;
+            padding:30px;
+            border-radius:10px;
+            box-shadow:0 0 10px rgba(0,0,0,.2);
+        }
+
+        .metric{
+            margin:20px;
+            font-size:22px;
+            font-weight:bold;
+        }
+
+        span{
+            color:#28a745;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="container">
+
+    <h1>☁ CloudPulse</h1>
+
+    <h3>Live System Monitoring Dashboard</h3>
+
+    <div class="metric">
+        CPU Usage :
+        <span id="cpu">Loading...</span>
+    </div>
+
+    <div class="metric">
+        Memory Usage :
+        <span id="memory">Loading...</span>
+    </div>
+
+    <div class="metric">
+        Disk Usage :
+        <span id="disk">Loading...</span>
+    </div>
+
+</div>
+
+<script>
+
+async function loadData(){
+
+    try{
+
+        let response = await fetch("http://127.0.0.1:5000/metrics");
+
+        let data = await response.json();
+
+        document.getElementById("cpu").innerHTML = data.cpu + "%";
+        document.getElementById("memory").innerHTML = data.memory + "%";
+        document.getElementById("disk").innerHTML = data.disk + "%";
+
+    }
+    catch(error){
+
+        console.log(error);
+
+    }
+
+}
+
+loadData();
+
+setInterval(loadData,2000);
+
+</script>
+
+</body>
+</html>
