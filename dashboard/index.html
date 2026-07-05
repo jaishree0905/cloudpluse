@@ -1,89 +1,341 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CloudPulse Dashboard</title>
 
-    <style>
-        body{
-            font-family: Arial, sans-serif;
-            background:#f4f4f4;
-            text-align:center;
-            margin:0;
-            padding:40px;
-        }
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        h1{
-            color:#0077cc;
-        }
+<title>CloudPulse Dashboard</title>
 
-        .container{
-            width:350px;
-            margin:auto;
-            background:white;
-            padding:30px;
-            border-radius:10px;
-            box-shadow:0 0 10px rgba(0,0,0,.2);
-        }
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
 
-        .metric{
-            margin:20px;
-            font-size:22px;
-            font-weight:bold;
-        }
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
-        span{
-            color:#28a745;
-        }
-    </style>
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+<style>
+
+body{
+    background:#0f172a;
+    color:white;
+    font-family:'Segoe UI',sans-serif;
+}
+
+.navbar{
+    background:#111827;
+    box-shadow:0 0 20px rgba(0,0,0,.4);
+}
+
+.brand{
+    font-size:30px;
+    font-weight:bold;
+    color:#3b82f6;
+}
+
+.status{
+    color:#22c55e;
+    font-weight:bold;
+}
+
+.card{
+    background:#1e293b;
+    border:none;
+    border-radius:18px;
+    transition:.3s;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.card:hover{
+    transform:translateY(-6px);
+}
+
+.card h5{
+    color:white !important;
+    font-weight:600;
+}
+
+.metric{
+    font-size:38px;
+    font-weight:bold;
+}
+
+.progress{
+    height:10px;
+    background:#334155;
+}
+
+.chart-card{
+    background:#1e293b;
+    border-radius:18px;
+    padding:20px;
+    margin-top:25px;
+}
+
+footer{
+    color:#94a3b8;
+    margin-top:30px;
+    text-align:center;
+}
+
+</style>
 
 </head>
+
 <body>
 
-<div class="container">
+<nav class="navbar navbar-dark px-4">
 
-    <h1>☁ CloudPulse</h1>
+<div class="container-fluid">
 
-    <h3>Live System Monitoring Dashboard</h3>
+<span class="brand">
+<i class="fa-solid fa-cloud"></i> CloudPulse
+</span>
 
-    <div class="metric">
-        CPU Usage :
-        <span id="cpu">Loading...</span>
-    </div>
+<span class="status">
+<i class="fa-solid fa-circle"></i>
+System Online
+</span>
 
-    <div class="metric">
-        Memory Usage :
-        <span id="memory">Loading...</span>
-    </div>
+</div>
 
-    <div class="metric">
-        Disk Usage :
-        <span id="disk">Loading...</span>
-    </div>
+</nav>
+
+<div class="container mt-5">
+
+<div class="row g-4">
+
+<div class="col-lg-4">
+
+<div class="card p-4">
+
+<h5><i class="fa-solid fa-microchip"></i> CPU Usage</h5>
+
+<h1 id="cpu" class="metric text-primary">0%</h1>
+
+<div class="progress">
+<div id="cpuBar"
+class="progress-bar bg-primary"
+style="width:0%">
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card p-4">
+
+<h5><i class="fa-solid fa-memory"></i> Memory Usage</h5>
+
+<h1 id="memory" class="metric text-success">0%</h1>
+
+<div class="progress">
+<div id="memoryBar"
+class="progress-bar bg-success"
+style="width:0%">
+</div>
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-4">
+
+<div class="card p-4">
+
+<h5><i class="fa-solid fa-hard-drive"></i> Disk Usage</h5>
+
+<h1 id="disk" class="metric text-warning">0%</h1>
+
+<div class="progress">
+<div id="diskBar"
+class="progress-bar bg-warning"
+style="width:0%">
+</div>
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="chart-card">
+
+<h4 class="mb-3">
+<i class="fa-solid fa-chart-line"></i>
+System Metrics
+</h4>
+
+<canvas id="metricChart" height="100"></canvas>
+
+</div>
+
+<footer>
+
+<p>
+
+Last Updated :
+<span id="time"></span>
+
+</p>
+
+</footer>
 
 </div>
 
 <script>
 
+const ctx=document.getElementById('metricChart');
+
+const labels=[];
+
+const cpuData=[];
+const memoryData=[];
+const diskData=[];
+
+const chart=new Chart(ctx,{
+
+type:'line',
+
+data:{
+
+labels:labels,
+
+datasets:[
+
+{
+
+label:'CPU',
+
+data:cpuData,
+
+borderColor:'#3b82f6',
+
+fill:false,
+
+tension:.4
+
+},
+
+{
+
+label:'Memory',
+
+data:memoryData,
+
+borderColor:'#22c55e',
+
+fill:false,
+
+tension:.4
+
+},
+
+{
+
+label:'Disk',
+
+data:diskData,
+
+borderColor:'#f59e0b',
+
+fill:false,
+
+tension:.4
+
+}
+
+]
+
+},
+
+options:{
+
+responsive:true,
+
+plugins:{
+legend:{
+labels:{
+color:'white'
+}
+}
+},
+
+scales:{
+
+x:{
+ticks:{
+color:'white'
+},
+grid:{
+color:'#334155'
+}
+},
+
+y:{
+ticks:{
+color:'white'
+},
+grid:{
+color:'#334155'
+},
+beginAtZero:true,
+max:100
+}
+
+}
+
+}
+
+});
+
 async function loadData(){
 
-    try{
+try{
 
-        let response = await fetch("http://127.0.0.1:5000/metrics");
+const response=await fetch("http://127.0.0.1:5000/metrics");
 
-        let data = await response.json();
+const data=await response.json();
 
-        document.getElementById("cpu").innerHTML = data.cpu + "%";
-        document.getElementById("memory").innerHTML = data.memory + "%";
-        document.getElementById("disk").innerHTML = data.disk + "%";
+document.getElementById("cpu").innerHTML=data.cpu+"%";
+document.getElementById("memory").innerHTML=data.memory+"%";
+document.getElementById("disk").innerHTML=data.disk+"%";
 
-    }
-    catch(error){
+document.getElementById("cpuBar").style.width=data.cpu+"%";
+document.getElementById("memoryBar").style.width=data.memory+"%";
+document.getElementById("diskBar").style.width=data.disk+"%";
 
-        console.log(error);
+document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
 
-    }
+labels.push("");
+
+cpuData.push(data.cpu);
+memoryData.push(data.memory);
+diskData.push(data.disk);
+
+if(labels.length>20){
+
+labels.shift();
+cpuData.shift();
+memoryData.shift();
+diskData.shift();
+
+}
+
+chart.update();
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
 
 }
 
