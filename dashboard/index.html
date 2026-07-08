@@ -323,15 +323,15 @@ max:100
 
 async function loadData(){
 
-    try{
+try{
 
         const response = await fetch("http://127.0.0.1:5000/metrics");
 
         const data = await response.json();
 
-        document.getElementById("cpu").innerHTML = data.cpu + "%";
-        document.getElementById("memory").innerHTML = data.memory + "%";
-        document.getElementById("disk").innerHTML = data.disk + "%";
+document.getElementById("cpu").innerHTML=data.cpu+"%";
+document.getElementById("memory").innerHTML=data.memory+"%";
+document.getElementById("disk").innerHTML=data.disk+"%";
 
         document.getElementById("cpuBar").style.width = data.cpu + "%";
         document.getElementById("memoryBar").style.width = data.memory + "%";
@@ -362,7 +362,30 @@ async function loadData(){
 
         console.log(err);
 
-    }
+labels.push("");
+
+cpuData.push(data.cpu);
+memoryData.push(data.memory);
+diskData.push(data.disk);
+
+if(labels.length>20){
+
+labels.shift();
+cpuData.shift();
+memoryData.shift();
+diskData.shift();
+
+}
+
+chart.update();
+
+}
+
+catch(err){
+
+console.log(err);
+
+}
 
 }
 
@@ -378,7 +401,6 @@ async function loadHistory(){
         const response = await fetch("http://127.0.0.1:5000/history");
 
         const data = await response.json();
-
         const table = document.getElementById("historyTable");
 
         table.innerHTML = "";
