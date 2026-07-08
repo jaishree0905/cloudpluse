@@ -9,7 +9,7 @@ except ImportError:
 import psutil
 import os
 import json
-from datetime import datetime
+
 app = Flask(__name__)
 CORS(app)
 
@@ -25,10 +25,9 @@ def metrics():
     disk_path = os.getenv("SystemDrive", "C:\\")
 
     new_data = {
-        "time": datetime.now().strftime("%I:%M:%S %p"),
-    "cpu": psutil.cpu_percent(interval=1),
-    "memory": psutil.virtual_memory().percent,
-    "disk": psutil.disk_usage(disk_path).percent
+        "cpu": psutil.cpu_percent(interval=1),
+        "memory": psutil.virtual_memory().percent,
+        "disk": psutil.disk_usage(disk_path).percent
     }
 
     

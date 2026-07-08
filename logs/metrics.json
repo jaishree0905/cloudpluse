@@ -1,143 +1,77 @@
 [
     {
-<<<<<<< HEAD
-        "time": "09:10:59 PM",
-        "cpu": 13.8,
-        "memory": 81.8,
-        "disk": 92.6
+        "cpu": 21.9,
+        "memory": 85.9,
+        "disk": 96.7
     },
     {
-        "time": "09:11:01 PM",
-        "cpu": 23.5,
-        "memory": 81.9,
-        "disk": 92.6
+        "cpu": 7.2,
+        "memory": 85.3,
+        "disk": 96.7
     },
     {
-        "time": "09:11:03 PM",
-        "cpu": 20.1,
-        "memory": 81.9,
-        "disk": 92.6
+        "cpu": 30.9,
+        "memory": 85.7,
+        "disk": 96.7
     },
     {
-        "time": "09:11:05 PM",
-        "cpu": 27.6,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 12.7,
+        "memory": 85.8,
+        "disk": 96.7
     },
     {
-        "time": "09:11:07 PM",
-        "cpu": 25.5,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 14.2,
+        "memory": 84.6,
+        "disk": 96.7
     },
     {
-        "time": "09:11:09 PM",
-        "cpu": 6.9,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 16.3,
+        "memory": 84.6,
+        "disk": 96.7
     },
     {
-        "time": "09:11:11 PM",
-        "cpu": 9.6,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 15.7,
+        "memory": 84.5,
+        "disk": 96.7
     },
     {
-        "time": "09:11:13 PM",
-        "cpu": 24.9,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 30.0,
+        "memory": 84.7,
+        "disk": 96.7
     },
     {
-        "time": "09:11:15 PM",
-        "cpu": 25.6,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 23.4,
+        "memory": 84.4,
+        "disk": 96.7
     },
     {
-        "time": "09:11:17 PM",
-        "cpu": 19.2,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 11.3,
+        "memory": 84.3,
+        "disk": 96.7
     },
     {
-        "time": "09:11:19 PM",
-        "cpu": 16.9,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 11.8,
+        "memory": 83.7,
+        "disk": 96.7
     },
     {
-        "time": "09:11:21 PM",
-        "cpu": 27.9,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 20.4,
+        "memory": 86.3,
+        "disk": 96.7
     },
     {
-        "time": "09:11:23 PM",
-        "cpu": 15.9,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 11.3,
+        "memory": 84.1,
+        "disk": 96.7
     },
     {
-        "time": "09:11:25 PM",
-        "cpu": 14.7,
-        "memory": 82.0,
-        "disk": 92.6
+        "cpu": 9.1,
+        "memory": 85.5,
+        "disk": 96.7
     },
     {
-        "time": "09:11:27 PM",
-        "cpu": 13.4,
-        "memory": 82.0,
-        "disk": 92.6
-    },
-    {
-        "time": "09:11:29 PM",
-        "cpu": 28.7,
-        "memory": 81.5,
-        "disk": 92.6
-    },
-    {
-        "time": "09:11:31 PM",
-        "cpu": 12.0,
-        "memory": 81.4,
-        "disk": 92.6
-    },
-    {
-        "time": "09:11:33 PM",
-        "cpu": 23.5,
-        "memory": 81.4,
-        "disk": 92.6
-    },
-    {
-        "time": "09:11:35 PM",
-        "cpu": 11.1,
-        "memory": 81.6,
-        "disk": 92.6
-    },
-    {
-        "time": "09:11:37 PM",
-        "cpu": 4.1,
-        "memory": 81.6,
-        "disk": 92.6
-=======
-        "cpu": 20.8,
-        "memory": 91.9,
-        "disk": 61.8
-    },
-    {
-        "cpu": 47.4,
-        "memory": 91.6,
-        "disk": 61.8
-    },
-    {
-        "cpu": 25.6,
-        "memory": 87.4,
-        "disk": 61.8
-    },
-    {
-        "cpu": 26.6,
-        "memory": 87.1,
-        "disk": 61.8
->>>>>>> f3f48afbb0ad843e7d0cb67a3e1760b14ab58b2e
+        "cpu": 30.9,
+        "memory": 84.7,
+        "disk": 96.7
     }
 ]
