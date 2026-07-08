@@ -174,6 +174,33 @@ System Metrics
 <canvas id="metricChart" height="100"></canvas>
 
 </div>
+<div class="chart-card">
+
+    <h4 class="mb-3">
+        <i class="fa-solid fa-clock-rotate-left"></i>
+        Metrics History
+    </h4>
+
+    <table class="table table-dark table-striped">
+
+        <thead>
+
+            <tr>
+                <th>Time</th>
+                <th>CPU</th>
+                <th>Memory</th>
+                <th>Disk</th>
+            </tr>
+
+        </thead>
+
+        <tbody id="historyTable">
+
+        </tbody>
+
+    </table>
+
+</div>
 
 <footer>
 
@@ -296,52 +323,97 @@ max:100
 
 async function loadData(){
 
-try{
+    try{
 
-const response=await fetch("http://127.0.0.1:5000/metrics");
+        const response = await fetch("http://127.0.0.1:5000/metrics");
 
-const data=await response.json();
+        const data = await response.json();
 
-document.getElementById("cpu").innerHTML=data.cpu+"%";
-document.getElementById("memory").innerHTML=data.memory+"%";
-document.getElementById("disk").innerHTML=data.disk+"%";
+        document.getElementById("cpu").innerHTML = data.cpu + "%";
+        document.getElementById("memory").innerHTML = data.memory + "%";
+        document.getElementById("disk").innerHTML = data.disk + "%";
 
-document.getElementById("cpuBar").style.width=data.cpu+"%";
-document.getElementById("memoryBar").style.width=data.memory+"%";
-document.getElementById("diskBar").style.width=data.disk+"%";
+        document.getElementById("cpuBar").style.width = data.cpu + "%";
+        document.getElementById("memoryBar").style.width = data.memory + "%";
+        document.getElementById("diskBar").style.width = data.disk + "%";
 
-document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
+        document.getElementById("time").innerHTML = new Date().toLocaleTimeString();
 
-labels.push("");
+        labels.push("");
 
-cpuData.push(data.cpu);
-memoryData.push(data.memory);
-diskData.push(data.disk);
+        cpuData.push(data.cpu);
+        memoryData.push(data.memory);
+        diskData.push(data.disk);
 
-if(labels.length>20){
+        if(labels.length > 20){
 
-labels.shift();
-cpuData.shift();
-memoryData.shift();
-diskData.shift();
+            labels.shift();
+            cpuData.shift();
+            memoryData.shift();
+            diskData.shift();
+
+        }
+
+        chart.update();
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
 
 }
 
-chart.update();
+
+// ===============================
+// Load History Table
+// ===============================
+
+async function loadHistory(){
+
+    try{
+
+        const response = await fetch("http://127.0.0.1:5000/history");
+
+        const data = await response.json();
+
+        const table = document.getElementById("historyTable");
+
+        table.innerHTML = "";
+
+        data.slice().reverse().forEach(item => {
+
+            table.innerHTML += `
+                <tr>
+                    <td>${item.time}</td>
+                    <td>${item.cpu}%</td>
+                    <td>${item.memory}%</td>
+                    <td>${item.disk}%</td>
+                </tr>
+            `;
+
+        });
+
+    }
+
+    catch(err){
+
+        console.log(err);
+
+    }
 
 }
 
-catch(err){
 
-console.log(err);
-
-}
-
-}
-
+// First Load
 loadData();
+loadHistory();
 
+// Auto Refresh
 setInterval(loadData,2000);
+setInterval(loadHistory,5000);
 
 </script>
 
