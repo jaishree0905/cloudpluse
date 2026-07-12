@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 try:
     from flask_cors import CORS
 except ImportError:
@@ -9,6 +9,7 @@ except ImportError:
 import psutil
 import os
 import json
+from datetime import datetime
 
 app = Flask(__name__)
 CORS(app)
@@ -25,9 +26,13 @@ def metrics():
     disk_path = os.getenv("SystemDrive", "C:\\")
 
     new_data = {
-        "cpu": psutil.cpu_percent(interval=1),
-        "memory": psutil.virtual_memory().percent,
-        "disk": psutil.disk_usage(disk_path).percent
+       
+    "time": datetime.now().strftime("%I:%M:%S %p"),
+
+    "cpu": psutil.cpu_percent(interval=1),
+    "memory": psutil.virtual_memory().percent,
+    "disk": psutil.disk_usage(disk_path).percent
+
     }
 
     
@@ -68,7 +73,14 @@ def history():
         data = json.load(file)
 
     return jsonify(data)
+@app.route("/clear", methods=["POST"])
+def clear_history():
 
+    file_path = os.path.join("logs", "metrics.json")
 
+    with open(file_path, "w") as file:
+        json.dump([], file)
+
+    return jsonify({"message": "History Cleared Successfully"})
 if __name__ == "__main__":
     app.run(debug=True)
