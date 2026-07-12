@@ -163,7 +163,9 @@ style="width:0%">
 </div>
 
 </div>
-
+<div id="alertBox" class="alert alert-success text-center fw-bold">
+    ✅ System Healthy
+</div>
 <div class="chart-card">
 
 <h4 class="mb-3">
@@ -180,6 +182,13 @@ System Metrics
         <i class="fa-solid fa-clock-rotate-left"></i>
         Metrics History
     </h4>
+    <button class="btn btn-primary mb-3" onclick="downloadCSV()">
+        <i class="fa-solid fa-download"></i> Download CSV
+    </button>
+
+<button class="btn btn-danger mb-3 ms-2" onclick="clearHistory()">
+    <i class="fa-solid fa-trash"></i> Clear History
+</button>
 
     <table class="table table-dark table-striped">
 
@@ -335,6 +344,35 @@ document.getElementById("disk").innerHTML=data.disk+"%";
 document.getElementById("cpuBar").style.width=data.cpu+"%";
 document.getElementById("memoryBar").style.width=data.memory+"%";
 document.getElementById("diskBar").style.width=data.disk+"%";
+const alertBox = document.getElementById("alertBox");
+
+if(data.cpu > 80){
+
+    alertBox.className="alert alert-danger text-center fw-bold";
+    alertBox.innerHTML="🔴 High CPU Usage!";
+
+}
+
+else if(data.memory > 80){
+
+    alertBox.className="alert alert-warning text-center fw-bold";
+    alertBox.innerHTML="🟠 High Memory Usage!";
+
+}
+
+else if(data.disk > 90){
+
+    alertBox.className="alert alert-warning text-center fw-bold";
+    alertBox.innerHTML="🟡 Disk Almost Full!";
+
+}
+
+else{
+
+    alertBox.className="alert alert-success text-center fw-bold";
+    alertBox.innerHTML="✅ System Healthy";
+
+}
 
 document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
 
@@ -386,6 +424,61 @@ async function loadHistory(){
         `;
 
     });
+
+}
+function downloadCSV(){
+
+    fetch("http://127.0.0.1:5000/history")
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        let csv = "Time,CPU,Memory,Disk\n";
+
+        data.forEach(item => {
+
+            csv += `${item.time},${item.cpu},${item.memory},${item.disk}\n`;
+
+        });
+
+        const blob = new Blob([csv], {type:"text/csv"});
+
+        const url = URL.createObjectURL(blob);
+
+        const a = document.createElement("a");
+
+        a.href = url;
+        a.download = "metrics.csv";
+
+        document.body.appendChild(a);
+        a.click();
+        document.body.removeChild(a);
+
+        URL.revokeObjectURL(url);
+
+    });
+
+}
+function clearHistory(){
+
+    fetch("http://127.0.0.1:5000/clear",{
+
+        method:"POST"
+
+    })
+
+    .then(response => response.json())
+
+    .then(data => {
+
+        alert(data.message);
+
+        loadHistory();
+
+    })
+
+    .catch(error => console.log(error));
 
 }
 loadData();

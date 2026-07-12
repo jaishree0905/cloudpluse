@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, request
 try:
     from flask_cors import CORS
 except ImportError:
@@ -73,7 +73,14 @@ def history():
         data = json.load(file)
 
     return jsonify(data)
+@app.route("/clear", methods=["POST"])
+def clear_history():
 
+    file_path = os.path.join("logs", "metrics.json")
 
+    with open(file_path, "w") as file:
+        json.dump([], file)
+
+    return jsonify({"message": "History Cleared Successfully"})
 if __name__ == "__main__":
     app.run(debug=True)
