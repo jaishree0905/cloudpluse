@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 
 <meta charset="UTF-8">
@@ -12,481 +13,277 @@
 <link rel="stylesheet"
 href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css">
 
+<link rel="stylesheet" href="style.css">
+
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
-<style>
-
-body{
-    background:#0f172a;
-    color:white;
-    font-family:'Segoe UI',sans-serif;
-}
-
-.navbar{
-    background:#111827;
-    box-shadow:0 0 20px rgba(0,0,0,.4);
-}
-
-.brand{
-    font-size:30px;
-    font-weight:bold;
-    color:#3b82f6;
-}
-
-.status{
-    color:#22c55e;
-    font-weight:bold;
-}
-
-.card{
-    background:#1e293b;
-    border:none;
-    border-radius:18px;
-    transition:.3s;
-    box-shadow:0 10px 20px rgba(0,0,0,.35);
-}
-
-.card:hover{
-    transform:translateY(-6px);
-}
-
-.card h5{
-    color:white !important;
-    font-weight:600;
-}
-
-.metric{
-    font-size:38px;
-    font-weight:bold;
-}
-
-.progress{
-    height:10px;
-    background:#334155;
-}
-
-.chart-card{
-    background:#1e293b;
-    border-radius:18px;
-    padding:20px;
-    margin-top:25px;
-}
-
-footer{
-    color:#94a3b8;
-    margin-top:30px;
-    text-align:center;
-}
-
-</style>
 
 </head>
 
 <body>
 
-<nav class="navbar navbar-dark px-4">
+<!-- ================= Sidebar ================= -->
 
-<div class="container-fluid">
+<div class="sidebar">
 
-<span class="brand">
-<i class="fa-solid fa-cloud"></i> CloudPulse
-</span>
+    <div class="logo">
 
-<span class="status">
-<i class="fa-solid fa-circle"></i>
-System Online
-</span>
+        <i class="fa-solid fa-cloud"></i>
+
+        <h2>CloudPulse</h2>
+
+        <p>Real-Time Monitoring</p>
+
+    </div>
+
+    <ul>
+
+        <li class="active">
+            <i class="fa-solid fa-house"></i>
+            Dashboard
+        </li>
+
+        </ul>
 
 </div>
 
-</nav>
+<!-- ================= Main ================= -->
 
-<div class="container mt-5">
+<div class="main">
+
+<div class="header">
+
+<div>
+
+<h1>CloudPulse Dashboard</h1>
+
+<p>Monitor your system performance in real-time</p>
+
+</div>
+
+<div class="clock">
+
+<i class="fa-solid fa-clock"></i>
+
+<span id="time"></span>
+
+</div>
+
+</div>
+
+<!-- ================= Cards ================= -->
 
 <div class="row g-4">
 
-<div class="col-lg-4">
+<div class="col-lg-3">
 
-<div class="card p-4">
+<div class="metric-card cpu">
 
-<h5><i class="fa-solid fa-microchip"></i> CPU Usage</h5>
+<i class="fa-solid fa-microchip"></i>
 
-<h1 id="cpu" class="metric text-primary">0%</h1>
+<h5>CPU Usage</h5>
 
-<div class="progress">
-<div id="cpuBar"
-class="progress-bar bg-primary"
-style="width:0%">
-</div>
-</div>
-
-</div>
-
-</div>
-
-<div class="col-lg-4">
-
-<div class="card p-4">
-
-<h5><i class="fa-solid fa-memory"></i> Memory Usage</h5>
-
-<h1 id="memory" class="metric text-success">0%</h1>
+<h2 id="cpu">0%</h2>
 
 <div class="progress">
-<div id="memoryBar"
-class="progress-bar bg-success"
-style="width:0%">
-</div>
-</div>
+
+<div id="cpuBar" class="progress-bar bg-primary"></div>
 
 </div>
 
 </div>
 
-<div class="col-lg-4">
+</div>
 
-<div class="card p-4">
+<div class="col-lg-3">
 
-<h5><i class="fa-solid fa-hard-drive"></i> Disk Usage</h5>
+<div class="metric-card memory">
 
-<h1 id="disk" class="metric text-warning">0%</h1>
+<i class="fa-solid fa-memory"></i>
+
+<h5>Memory Usage</h5>
+
+<h2 id="memory">0%</h2>
 
 <div class="progress">
-<div id="diskBar"
-class="progress-bar bg-warning"
-style="width:0%">
-</div>
-</div>
+
+<div id="memoryBar" class="progress-bar bg-success"></div>
 
 </div>
 
 </div>
 
 </div>
-<div id="alertBox" class="alert alert-success text-center fw-bold">
-    ✅ System Healthy
-</div>
-<div class="chart-card">
 
-<h4 class="mb-3">
+<div class="col-lg-3">
+
+<div class="metric-card disk">
+
+<i class="fa-solid fa-hard-drive"></i>
+
+<h5>Disk Usage</h5>
+
+<h2 id="disk">0%</h2>
+
+<div class="progress">
+
+<div id="diskBar" class="progress-bar bg-warning"></div>
+
+</div>
+
+</div>
+
+</div>
+
+<div class="col-lg-3">
+
+<div class="metric-card health">
+
+<h5>System Health</h5>
+
+<h2 id="healthText">Healthy</h2>
+
+<p id="healthStatus">Everything is running smoothly</p>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= Chart ================= -->
+
+<div class="chart-card mt-4">
+
+<h4>
+
 <i class="fa-solid fa-chart-line"></i>
-System Metrics
+
+Live Performance (Last 60 Seconds)
+
 </h4>
 
-<canvas id="metricChart" height="100"></canvas>
+<canvas id="metricChart"></canvas>
 
 </div>
-<div class="chart-card">
 
-    <h4 class="mb-3">
-        <i class="fa-solid fa-clock-rotate-left"></i>
-        Metrics History
-    </h4>
-    <button class="btn btn-primary mb-3" onclick="downloadCSV()">
-        <i class="fa-solid fa-download"></i> Download CSV
-    </button>
+<!-- ================= Statistics ================= -->
 
-<button class="btn btn-danger mb-3 ms-2" onclick="clearHistory()">
-    <i class="fa-solid fa-trash"></i> Clear History
+<div class="row mt-4">
+
+<div class="col-md-3">
+
+<div class="small-card">
+
+<h6>Average CPU</h6>
+
+<h2 id="avgCpu">0%</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="small-card">
+
+<h6>Maximum CPU</h6>
+
+<h2 id="maxCpu">0%</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="small-card">
+
+<h6>Minimum CPU</h6>
+
+<h2 id="minCpu">0%</h2>
+
+</div>
+
+</div>
+
+<div class="col-md-3">
+
+<div class="small-card">
+
+<h6>Total Records</h6>
+
+<h2 id="records">0</h2>
+
+</div>
+
+</div>
+
+</div>
+
+<!-- ================= History ================= -->
+
+<div class="history-card mt-4">
+
+<h3>
+
+<i class="fa-solid fa-clock-rotate-left"></i>
+
+Metrics History
+
+</h3>
+
+<div class="mb-3">
+
+<button class="btn btn-primary" onclick="downloadCSV()">
+
+<i class="fa-solid fa-download"></i>
+
+Download CSV
+
 </button>
 
-    <table class="table table-dark table-striped">
+<button class="btn btn-danger" onclick="clearHistory()">
 
-        <thead>
+<i class="fa-solid fa-trash"></i>
 
-            <tr>
-                <th>Time</th>
-                <th>CPU</th>
-                <th>Memory</th>
-                <th>Disk</th>
-            </tr>
+Clear History
 
-        </thead>
-
-        <tbody id="historyTable">
-
-        </tbody>
-
-    </table>
-
-</div>
-<footer>
-
-<p>
-
-Last Updated :
-<span id="time"></span>
-
-</p>
-
-</footer>
+</button>
 
 </div>
 
-<script>
+<table class="table table-dark table-hover">
 
-const ctx=document.getElementById('metricChart');
+<thead>
 
-const labels=[];
+<tr>
 
-const cpuData=[];
-const memoryData=[];
-const diskData=[];
+<th>#</th>
 
-const chart=new Chart(ctx,{
+<th>Time</th>
 
-type:'line',
+<th>CPU (%)</th>
 
-data:{
+<th>Memory (%)</th>
 
-labels:labels,
+<th>Disk (%)</th>
 
-datasets:[
+</tr>
 
-{
+</thead>
 
-label:'CPU',
+<tbody id="historyTable">
 
-data:cpuData,
+</tbody>
 
-borderColor:'#3b82f6',
+</table>
 
-fill:false,
+</div>
 
-tension:.4
+</div>
 
-},
-
-{
-
-label:'Memory',
-
-data:memoryData,
-
-borderColor:'#22c55e',
-
-fill:false,
-
-tension:.4
-
-},
-
-{
-
-label:'Disk',
-
-data:diskData,
-
-borderColor:'#f59e0b',
-
-fill:false,
-
-tension:.4
-
-}
-
-]
-
-},
-
-options:{
-
-responsive:true,
-
-plugins:{
-legend:{
-labels:{
-color:'white'
-}
-}
-},
-
-scales:{
-
-x:{
-ticks:{
-color:'white'
-},
-grid:{
-color:'#334155'
-}
-},
-
-y:{
-ticks:{
-color:'white'
-},
-grid:{
-color:'#334155'
-},
-beginAtZero:true,
-max:100
-}
-
-}
-
-}
-
-});
-
-async function loadData(){
-
-try{
-
-const response=await fetch("http://127.0.0.1:5000/metrics");
-
-const data=await response.json();
-
-document.getElementById("cpu").innerHTML=data.cpu+"%";
-document.getElementById("memory").innerHTML=data.memory+"%";
-document.getElementById("disk").innerHTML=data.disk+"%";
-
-document.getElementById("cpuBar").style.width=data.cpu+"%";
-document.getElementById("memoryBar").style.width=data.memory+"%";
-document.getElementById("diskBar").style.width=data.disk+"%";
-const alertBox = document.getElementById("alertBox");
-
-if(data.cpu > 80){
-
-    alertBox.className="alert alert-danger text-center fw-bold";
-    alertBox.innerHTML="🔴 High CPU Usage!";
-
-}
-
-else if(data.memory > 80){
-
-    alertBox.className="alert alert-warning text-center fw-bold";
-    alertBox.innerHTML="🟠 High Memory Usage!";
-
-}
-
-else if(data.disk > 90){
-
-    alertBox.className="alert alert-warning text-center fw-bold";
-    alertBox.innerHTML="🟡 Disk Almost Full!";
-
-}
-
-else{
-
-    alertBox.className="alert alert-success text-center fw-bold";
-    alertBox.innerHTML="✅ System Healthy";
-
-}
-
-document.getElementById("time").innerHTML=new Date().toLocaleTimeString();
-
-labels.push("");
-
-cpuData.push(data.cpu);
-memoryData.push(data.memory);
-diskData.push(data.disk);
-
-if(labels.length>20){
-
-labels.shift();
-cpuData.shift();
-memoryData.shift();
-diskData.shift();
-
-}
-
-chart.update();
-
-}
-
-catch(err){
-
-console.log(err);
-
-}
-
-}
-async function loadHistory(){
-
-    const response = await fetch("http://127.0.0.1:5000/history");
-
-    const data = await response.json();
-
-    const table = document.getElementById("historyTable");
-
-    table.innerHTML = "";
-
-    data.slice().reverse().forEach(item=>{
-
-        table.innerHTML += `
-        <tr>
-            <td>${item.time}</td>
-            <td>${item.cpu}%</td>
-            <td>${item.memory}%</td>
-            <td>${item.disk}%</td>
-        </tr>
-        `;
-
-    });
-
-}
-function downloadCSV(){
-
-    fetch("http://127.0.0.1:5000/history")
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        let csv = "Time,CPU,Memory,Disk\n";
-
-        data.forEach(item => {
-
-            csv += `${item.time},${item.cpu},${item.memory},${item.disk}\n`;
-
-        });
-
-        const blob = new Blob([csv], {type:"text/csv"});
-
-        const url = URL.createObjectURL(blob);
-
-        const a = document.createElement("a");
-
-        a.href = url;
-        a.download = "metrics.csv";
-
-        document.body.appendChild(a);
-        a.click();
-        document.body.removeChild(a);
-
-        URL.revokeObjectURL(url);
-
-    });
-
-}
-function clearHistory(){
-
-    fetch("http://127.0.0.1:5000/clear",{
-
-        method:"POST"
-
-    })
-
-    .then(response => response.json())
-
-    .then(data => {
-
-        alert(data.message);
-
-        loadHistory();
-
-    })
-
-    .catch(error => console.log(error));
-
-}
-loadData();
-loadHistory();
-setInterval(loadData,2000);
-setInterval(loadHistory,5000);
-
-</script>
+<script src="script.js"></script>
 
 </body>
+
 </html>

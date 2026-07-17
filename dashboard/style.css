@@ -1,0 +1,230 @@
+/* =========================
+   CloudPulse Dashboard
+========================= */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:"Segoe UI",sans-serif;
+}
+
+body{
+    background:linear-gradient(135deg,#0f172a,#111827,#1e293b);
+    color:white;
+    min-height:100vh;
+}
+
+/* Sidebar */
+
+.sidebar{
+    position:fixed;
+    left:0;
+    top:0;
+    width:250px;
+    height:100%;
+    background:#111827;
+    padding:30px 20px;
+    box-shadow:0 0 25px rgba(0,0,0,.4);
+}
+
+.logo{
+    text-align:center;
+    margin-bottom:40px;
+}
+
+.logo i{
+    font-size:55px;
+    color:#3b82f6;
+}
+
+.logo h2{
+    margin-top:10px;
+    font-weight:bold;
+}
+
+.logo p{
+    color:#94a3b8;
+}
+
+.sidebar ul{
+    list-style:none;
+    padding:0;
+}
+
+.sidebar li{
+    padding:15px;
+    margin-bottom:10px;
+    border-radius:12px;
+    cursor:pointer;
+    transition:.3s;
+}
+
+.sidebar li:hover{
+    background:#1e293b;
+}
+
+.sidebar li.active{
+    background:#2563eb;
+}
+
+/* Main */
+
+.main{
+    margin-left:270px;
+    padding:30px;
+}
+
+/* Header */
+
+.header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    margin-bottom:30px;
+}
+
+.header h1{
+    font-size:34px;
+}
+
+.header p{
+    color:#94a3b8;
+}
+
+.clock{
+    background:#1e293b;
+    padding:12px 25px;
+    border-radius:12px;
+    font-size:18px;
+}
+
+/* Metric Cards */
+
+.metric-card{
+    background:rgba(30,41,59,.85);
+    border-radius:20px;
+    padding:25px;
+    backdrop-filter:blur(12px);
+    transition:.3s;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.metric-card:hover{
+    transform:translateY(-8px);
+}
+
+.metric-card i{
+    font-size:35px;
+    margin-bottom:10px;
+}
+
+.metric-card h2{
+    font-size:42px;
+    margin:10px 0;
+}
+
+.cpu{
+    border-left:6px solid #3b82f6;
+}
+
+.memory{
+    border-left:6px solid #22c55e;
+}
+
+.disk{
+    border-left:6px solid #f59e0b;
+}
+
+.health{
+    border-left:6px solid #ef4444;
+}
+
+.progress{
+    height:10px;
+    background:#334155;
+}
+
+/* Chart */
+
+.chart-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.chart-card h4{
+    margin-bottom:20px;
+}
+
+/* Analytics */
+
+.small-card{
+    background:#1e293b;
+    border-radius:18px;
+    padding:20px;
+    text-align:center;
+    transition:.3s;
+}
+
+.small-card:hover{
+    transform:scale(1.04);
+}
+
+.small-card h6{
+    color:#94a3b8;
+}
+
+.small-card h2{
+    margin-top:10px;
+    color:#3b82f6;
+}
+
+/* History */
+
+.history-card{
+    background:#1e293b;
+    padding:25px;
+    border-radius:20px;
+}
+
+.table{
+    margin-top:20px;
+}
+
+.table thead{
+    background:#2563eb;
+}
+
+.btn{
+    border-radius:10px;
+    padding:10px 18px;
+}
+
+/* Responsive */
+
+@media(max-width:992px){
+
+.sidebar{
+
+width:100%;
+height:auto;
+position:relative;
+
+}
+
+.main{
+
+margin-left:0;
+
+}
+
+.header{
+
+flex-direction:column;
+align-items:flex-start;
+
+}
+
+}

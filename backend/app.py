@@ -64,6 +64,39 @@ def metrics():
 # ===============================
 # NEW HISTORY API
 # ===============================
+@app.route("/statistics")
+def statistics():
+    file_path = os.path.join("logs", "metrics.json")
+
+    with open(file_path, "r") as file:
+        data = json.load(file)
+
+    if not data:
+        return jsonify({"message": "No data available"}), 404
+
+    cpu_values = [entry["cpu"] for entry in data]
+    memory_values = [entry["memory"] for entry in data]
+    disk_values = [entry["disk"] for entry in data]
+
+    statistics_data = {
+        "cpu": {
+            "average": sum(cpu_values) / len(cpu_values),
+            "max": max(cpu_values),
+            "min": min(cpu_values)
+        },
+        "memory": {
+            "average": sum(memory_values) / len(memory_values),
+            "max": max(memory_values),
+            "min": min(memory_values)
+        },
+        "disk": {
+            "average": sum(disk_values) / len(disk_values),
+            "max": max(disk_values),
+            "min": min(disk_values)
+        }
+    }
+
+    return jsonify(statistics_data)
 @app.route("/history")
 def history():
 

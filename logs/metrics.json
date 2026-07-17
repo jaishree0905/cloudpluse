@@ -1,122 +1,122 @@
 [
     {
-        "time": "09:14:31 PM",
-        "cpu": 100.0,
-        "memory": 94.2,
-        "disk": 62.2
+        "time": "09:54:39 PM",
+        "cpu": 27.4,
+        "memory": 86.4,
+        "disk": 98.2
     },
     {
-        "time": "09:14:33 PM",
-        "cpu": 99.4,
-        "memory": 94.3,
-        "disk": 62.2
+        "time": "09:54:41 PM",
+        "cpu": 42.7,
+        "memory": 86.5,
+        "disk": 98.2
     },
     {
-        "time": "09:14:35 PM",
-        "cpu": 98.9,
-        "memory": 93.6,
-        "disk": 62.2
+        "time": "09:54:43 PM",
+        "cpu": 31.3,
+        "memory": 86.5,
+        "disk": 98.2
     },
     {
-        "time": "09:14:37 PM",
-        "cpu": 23.4,
-        "memory": 91.4,
-        "disk": 62.2
+        "time": "09:54:45 PM",
+        "cpu": 34.0,
+        "memory": 86.5,
+        "disk": 98.2
     },
     {
-        "time": "09:14:39 PM",
-        "cpu": 80.2,
-        "memory": 92.4,
-        "disk": 62.2
+        "time": "09:54:47 PM",
+        "cpu": 19.3,
+        "memory": 86.5,
+        "disk": 98.2
     },
     {
-        "time": "09:14:41 PM",
-        "cpu": 99.0,
-        "memory": 92.1,
-        "disk": 62.2
+        "time": "09:54:49 PM",
+        "cpu": 26.5,
+        "memory": 86.4,
+        "disk": 98.2
     },
     {
-        "time": "09:14:43 PM",
-        "cpu": 79.3,
-        "memory": 91.0,
-        "disk": 62.2
+        "time": "09:54:51 PM",
+        "cpu": 25.4,
+        "memory": 86.3,
+        "disk": 98.2
     },
     {
-        "time": "09:14:45 PM",
-        "cpu": 76.0,
-        "memory": 91.3,
-        "disk": 62.2
+        "time": "09:54:53 PM",
+        "cpu": 29.3,
+        "memory": 86.4,
+        "disk": 98.2
     },
     {
-        "time": "09:14:47 PM",
-        "cpu": 43.9,
-        "memory": 91.8,
-        "disk": 62.2
+        "time": "09:54:55 PM",
+        "cpu": 40.6,
+        "memory": 87.1,
+        "disk": 98.2
     },
     {
-        "time": "09:14:49 PM",
-        "cpu": 66.3,
-        "memory": 92.3,
-        "disk": 62.2
+        "time": "09:54:57 PM",
+        "cpu": 35.9,
+        "memory": 87.2,
+        "disk": 98.2
     },
     {
-        "time": "09:14:51 PM",
-        "cpu": 57.2,
-        "memory": 92.0,
-        "disk": 62.2
+        "time": "09:54:58 PM",
+        "cpu": 56.7,
+        "memory": 86.9,
+        "disk": 98.2
     },
     {
-        "time": "09:14:53 PM",
-        "cpu": 59.5,
-        "memory": 91.9,
-        "disk": 62.2
+        "time": "09:54:59 PM",
+        "cpu": 48.3,
+        "memory": 87.2,
+        "disk": 98.2
     },
     {
-        "time": "09:14:55 PM",
-        "cpu": 75.6,
-        "memory": 92.3,
-        "disk": 62.2
+        "time": "09:55:01 PM",
+        "cpu": 38.6,
+        "memory": 87.2,
+        "disk": 98.2
     },
     {
-        "time": "09:14:57 PM",
-        "cpu": 79.5,
-        "memory": 91.2,
-        "disk": 62.2
-    },
-    {
-        "time": "09:14:59 PM",
-        "cpu": 77.5,
-        "memory": 90.7,
-        "disk": 62.2
-    },
-    {
-        "time": "09:15:01 PM",
-        "cpu": 44.0,
-        "memory": 87.6,
-        "disk": 62.2
-    },
-    {
-        "time": "09:15:03 PM",
-        "cpu": 55.3,
+        "time": "09:55:03 PM",
+        "cpu": 33.5,
         "memory": 87.0,
-        "disk": 62.2
+        "disk": 98.2
     },
     {
-        "time": "09:15:05 PM",
-        "cpu": 73.9,
-        "memory": 85.3,
-        "disk": 62.2
+        "time": "09:55:05 PM",
+        "cpu": 31.3,
+        "memory": 87.1,
+        "disk": 98.2
     },
     {
-        "time": "09:15:07 PM",
-        "cpu": 56.9,
-        "memory": 87.6,
-        "disk": 62.2
+        "time": "09:55:07 PM",
+        "cpu": 38.9,
+        "memory": 87.3,
+        "disk": 98.2
     },
     {
-        "time": "09:15:09 PM",
-        "cpu": 40.8,
-        "memory": 86.8,
-        "disk": 62.2
+        "time": "09:55:09 PM",
+        "cpu": 23.5,
+        "memory": 87.5,
+        "disk": 98.2
+    },
+    {
+        "time": "09:55:11 PM",
+        "cpu": 49.7,
+        "memory": 88.4,
+        "disk": 98.2
+    },
+    {
+        "time": "09:55:13 PM",
+        "cpu": 29.4,
+        "memory": 88.2,
+        "disk": 98.2
+    },
+    {
+        "time": "09:55:15 PM",
+        "cpu": 31.4,
+        "memory": 87.7,
+        "disk": 98.2
     }
 ]
