@@ -228,3 +228,29 @@ align-items:flex-start;
 }
 
 }
+/* ===============================
+   System Information
+=============================== */
+
+.system-card{
+    background:#1e293b;
+    border-radius:18px;
+    padding:25px;
+    margin-top:25px;
+    box-shadow:0 10px 20px rgba(0,0,0,.35);
+}
+
+.system-card h3{
+    color:white;
+    margin-bottom:20px;
+}
+
+.system-card p{
+    color:#cbd5e1;
+    font-size:16px;
+    margin-bottom:12px;
+}
+
+.system-card strong{
+    color:#38bdf8;
+}

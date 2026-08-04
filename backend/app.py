@@ -10,7 +10,10 @@ import psutil
 import os
 import json
 from datetime import datetime
-
+import platform
+import socket
+import sys
+import time
 app = Flask(__name__)
 CORS(app)
 
@@ -97,6 +100,33 @@ def statistics():
     }
 
     return jsonify(statistics_data)
+@app.route("/systeminfo")
+def system_info():
+
+    memory = psutil.virtual_memory()
+
+    boot_time = datetime.fromtimestamp(psutil.boot_time())
+    uptime = datetime.now() - boot_time
+
+    return jsonify({
+
+        "os": platform.system() + " " + platform.release(),
+
+        "hostname": socket.gethostname(),
+
+        "processor": platform.processor(),
+
+        "python": platform.python_version(),
+
+        "cores": psutil.cpu_count(logical=False),
+
+        "threads": psutil.cpu_count(logical=True),
+
+        "ram": round(memory.total / (1024 ** 3), 2),
+
+        "uptime": str(uptime).split(".")[0]
+
+    })
 @app.route("/history")
 def history():
 

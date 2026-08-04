@@ -214,13 +214,42 @@ async function loadStatistics() {
         avg.toFixed(1) + "%";
 
     document.getElementById("maxCpu").innerHTML =
-        Math.max(...cpu) + "%";
+    Math.max(...cpu) + "%";
 
-    document.getElementById("minCpu").innerHTML =
-        Math.min(...cpu) + "%";
+document.getElementById("minCpu").innerHTML =
+    Math.min(...cpu) + "%";
 
     document.getElementById("records").innerHTML =
         data.length;
+
+}
+// ================================
+// Load System Information
+// ================================
+
+async function loadSystemInfo(){
+
+    try{
+
+        const response = await fetch("http://127.0.0.1:5000/systeminfo");
+
+        const data = await response.json();
+
+        document.getElementById("os").innerHTML = data.os;
+        document.getElementById("hostname").innerHTML = data.hostname;
+        document.getElementById("processor").innerHTML = data.processor;
+        document.getElementById("python").innerHTML = data.python;
+        document.getElementById("cores").innerHTML = data.cores;
+        document.getElementById("threads").innerHTML = data.threads;
+        document.getElementById("ram").innerHTML = data.ram + " GB";
+        document.getElementById("uptime").innerHTML = data.uptime;
+
+    }
+    catch(err){
+
+        console.log(err);
+
+    }
 
 }
 
@@ -297,8 +326,12 @@ loadHistory();
 
 loadStatistics();
 
+loadSystemInfo();
+
 setInterval(loadData, 2000);
 
 setInterval(loadHistory, 5000);
 
 setInterval(loadStatistics, 5000);
+
+setInterval(loadSystemInfo, 10000);
