@@ -1,4 +1,4 @@
-from flask import Flask, jsonify, request
+from flask import Flask, jsonify, request,render_template
 try:
     from flask_cors import CORS
 except ImportError:
@@ -14,13 +14,17 @@ import platform
 import socket
 import sys
 import time
-app = Flask(__name__)
+app = Flask(
+    __name__,
+    template_folder="../templates",
+    static_folder="../static"
+)
 CORS(app)
 
 
 @app.route("/")
 def home():
-    return "CloudPulse Running Successfully"
+    return render_template("index.html")
 
 
 @app.route("/metrics")

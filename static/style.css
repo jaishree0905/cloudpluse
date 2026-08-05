@@ -105,6 +105,7 @@ body{
     background:rgba(30,41,59,.85);
     border-radius:20px;
     padding:25px;
+    -webkit-backdrop-filter:blur(12px);
     backdrop-filter:blur(12px);
     transition:.3s;
     box-shadow:0 10px 20px rgba(0,0,0,.35);
